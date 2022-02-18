@@ -159,3 +159,10 @@ fs.readFile('freaky_friday.txt', Db.save.bind(Db));
 
 
 虽然this能够提高执行速度，但是还是尽可能地避免使用它，因为在函数式编程中根本用不到它
+
+
+## 纯函数
+
+<blockquote>
+  纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。
+</blockquote>
