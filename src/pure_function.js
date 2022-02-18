@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-18 09:12:29
  * @LastEditors: pink
- * @LastEditTime: 2022-02-18 11:44:14
+ * @LastEditTime: 2022-02-18 13:33:38
  * @Description: 纯函数
  */
 
@@ -106,3 +106,28 @@ let saveUser = function(Db, attrs) {
 let welcomeUser = function(Email, user) {
   // ...
 };
+
+// 函数透明性
+let Immutable = require('immuteable');
+
+let decrementHP = function(play){
+  return player.set('hp',player.hp-1)
+}
+
+let isSameTeam = function(player1,player2){
+  return player1.team === player2.team
+}
+
+let punch = function(player,target){
+  if(isSameTeam(player,target)){
+    return target
+  }else{
+    return decrementHP(target)
+  }
+}
+
+let jobe = Immutable.Map({name:'Jobe', hp: 20, team: 'red'})
+let michael = Immutable.Map({name:'michael',hp: 20, team: 'green'})
+
+punch(jobe, michael) //=> Immutable.Map({name:"Michael", hp:19, team: "green"})
+
