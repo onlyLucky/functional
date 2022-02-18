@@ -249,3 +249,43 @@ let immutableState = Object.freeze({
 #### 可缓存性（Cacheable）
 纯函数总能够根据输入来做缓存。实现缓存的一种典型方式是 memoize 技术
 
+```js
+// 可缓存性
+let memoize = function(f){
+  let cache = {}
+
+  return function(){
+    let arg_str = JSON.stringify(arguments)
+    cache[arg_str] = cache[arg_str] || f.apply(f,arguments)
+    return cache[arg_str]
+  }
+}
+
+let squareNumber = memoize((x)=>{return x*x})
+
+squareNumber(4) //=>16
+
+squareNumber(4) //=>16 // 从缓存中读取输入值为 4 的结果
+
+squareNumber(5) //=>25
+
+squareNumber(5) //=>25 // 从缓存中读取输入值为 4 的结果
+```
+
+值得注意的一点是，**可以通过延迟执行的方式把不纯的函数转换为纯函数**：
+
+
+```js
+// 通过延迟执行的方式把不纯的函数转换为纯函数
+let pureHttpCall = memoize((url,params)=>{
+  return ()=> {
+    return $.getJSON(url,params)
+  }
+})
+```
+我们并没有真正发送 http 请求——只是返回了一个函数，当调用它的时候才会发请求。这个函数之所以有资格成为纯函数，是因为它总是会根据相同的输入返回相同的输出：给定了 url 和 params 之后，它就只会返回同一个发送 http 请求的函数。
+
+不过很快我们就会学习一些技巧来发掘它的用处
+
+
+#### 可移植性／自文档化（Portable / Self-Documenting）
