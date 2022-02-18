@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-18 09:12:29
  * @LastEditors: pink
- * @LastEditTime: 2022-02-18 11:20:30
+ * @LastEditTime: 2022-02-18 11:44:14
  * @Description: 纯函数
  */
 
@@ -67,3 +67,42 @@ let pureHttpCall = memoize((url,params)=>{
     return $.getJSON(url,params)
   }
 })
+
+/* 
+  可移植性／自文档化
+*/
+
+// 下面为展示逻辑的一份伪代码
+
+// 不纯
+let signUp = function(attrs){
+  let user = saveUser(attrs)
+  welcomeUser(user)
+}
+
+let saveUser = (attrs)=>{
+  let user = Db.save(attrs)
+  // ...
+}
+
+let welcomeUser = ()=> {
+  //Email(user,...)
+  //...
+}
+
+// 纯
+
+let pureSignUp = (Db,Email,attrs)=>{
+  return ()=>{
+    let user = saveUser(Db,attrs)
+    welcomeUser(Email,user)
+  }
+}
+
+let saveUser = function(Db, attrs) {
+  // ...
+};
+
+let welcomeUser = function(Email, user) {
+  // ...
+};

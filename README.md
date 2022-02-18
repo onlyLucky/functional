@@ -289,3 +289,57 @@ let pureHttpCall = memoize((url,params)=>{
 
 
 #### 可移植性／自文档化（Portable / Self-Documenting）
+
+<blockquote>
+纯函数是完全自给自足的，它需要的所有东西都能轻易获得<br>
+纯函数的依赖很明确，因此更易于观察和理解
+</blockquote>
+
+```js
+// 不纯
+let signUp = function(attrs){
+  let user = saveUser(attrs)
+  welcomeUser(user)
+}
+
+let saveUser = (attrs)=>{
+  let user = Db.save(attrs)
+  // ...
+}
+
+let welcomeUser = ()=> {
+  //Email(user,...)
+  //...
+}
+
+// 纯
+
+let pureSignUp = (Db,Email,attrs)=>{
+  return ()=>{
+    let user = saveUser(Db,attrs)
+    welcomeUser(Email,user)
+  }
+}
+
+let saveUser = function(Db, attrs) {
+  // ...
+};
+
+let welcomeUser = function(Email, user) {
+  // ...
+};
+```
+
+通过强迫“注入”依赖，或者把它们当作参数传递，我们的应用也更加灵活
+
+<blockquote>面向对象语言的问题是，它们永远都要随身携带那些隐式的环境。你只需要一个香蕉，但却得到一个拿着香蕉的大猩猩...以及整个丛林</blockquote>
+
+
+#### 可测试性（Testable）
+
+<blockquote>
+纯函数让测试更加容易<br>
+只需简单地给函数一个输入，然后断言输出就好了<br>
+Quickcheck——一个为函数式环境量身定制的测试工具
+</blockquote>
+
