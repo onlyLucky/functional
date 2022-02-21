@@ -419,5 +419,8 @@ let findSpaces = filter(hasSpaces)
 findSpaces(["tori_spelling", "tori amos"]);
 // ["tori amos"]
 ```
-
+表明的是一种“预加载”函数的能力，通过传递一到两个参数调用函数，就能得到一个记住了这些参数的新函数。
 这里需要使用 npm install lodash 安装 lodash
+
+
+curry 函数用起来非常得心应手，每天使用它对我来说简直就是一种享受。它堪称手头必备工具，能够让函数式编程不那么繁琐和沉闷。
