@@ -370,3 +370,54 @@ Quickcheck——一个为函数式环境量身定制的测试工具
 
 > curry: 只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数
 
+```js
+let add = function(x){
+  return function(y){
+    return x+y;
+  }
+}
+
+let increment = add(1);
+let addTen = add(10);
+increment(2) // 3
+addTen(10) //20
+```
+调用 add 之后，返回的函数就通过闭包的方式记住了 add 的第一个参数。如果想使用一次性调用的话实在烦琐。这时候就可以使用curry帮助我们。
+
+
+```js
+let curry = require('lodash').curry;
+
+let match = curry(function(what,str){
+  return str.match(what)
+})
+
+let replace = curry(function(what, replacement, str){
+  return str.replace(what,replacement)
+})
+
+let filter = curry(function(f, ary) {
+  return ary.filter(f)
+})
+
+let map = curry(function(f,ary){
+  return ary.map(f)
+})
+
+console.log(match(/\s+/g,'hello World'))// [ ' ' ]
+console.log(match(/\s+/g)("hello world"))// [ ' ' ]
+
+let hasSpaces = match(/\s+/g)
+hasSpaces('hello World') // [ ' ' ]
+hasSpaces('hasSpaces') //null
+
+filter(hasSpaces, ["tori_spelling", "tori amos"]);
+// ["tori amos"]
+
+let findSpaces = filter(hasSpaces)
+
+findSpaces(["tori_spelling", "tori amos"]);
+// ["tori amos"]
+```
+
+这里需要使用 npm install lodash 安装 lodash

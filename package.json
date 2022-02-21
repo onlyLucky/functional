@@ -1,0 +1,18 @@
+{
+  "name": "functional",
+  "version": "1.0.0",
+  "description": "简单的来说，函数式编程是一种编程范式，遵循函数式的范式去书写完整的、日常的应用程序，有着优异性能的程序，简洁且易推理的程序，以及不用每次都重新造轮子的程序。将每个部分功能进行解耦，调用不同功能组件",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
