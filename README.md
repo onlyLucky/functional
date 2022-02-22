@@ -368,6 +368,8 @@ Quickcheck——一个为函数式环境量身定制的测试工具
 
 ## 柯里化 curry 
 
+[柯里化](src/curry.js)
+
 > curry: 只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数
 
 ```js
@@ -424,3 +426,30 @@ findSpaces(["tori_spelling", "tori amos"]);
 
 
 curry 函数用起来非常得心应手，每天使用它对我来说简直就是一种享受。它堪称手头必备工具，能够让函数式编程不那么繁琐和沉闷。
+
+
+
+## 代码组合
+
+[代码组合](src/compose.js)
+下面这就是 组合（compose，以下将称之为组合）
+
+```js
+let compose = function (f,g) {
+  return function(x){
+    return f(g(x))
+  }
+}
+```
+将两个函数进行组合之后形成了新的函数，下面是组合函数的使用方法
+
+```js
+let toUpperCase = function(x){return x.toUpperCase()}
+let exclaim = function(x){return x+'!'}
+
+let shout = compose(exclaim,toUpperCase)
+
+shout("Send in this clowns") //=> "SEND IN THE CLOWNS!"
+```
+让代码从右向左运行，而不是由内而外运行
+

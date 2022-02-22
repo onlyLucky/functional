@@ -121,3 +121,5 @@ function progressCurrying(fn, args) {
 - 一些老版本的浏览器在arguments.length的实现上是相当慢的
 - 使用fn.apply( … ) 和 fn.call( … )通常比直接调用fn( … ) 稍微慢点
 - 创建大量嵌套作用域和闭包函数会带来花销，无论是在内存还是速度上
+
+
