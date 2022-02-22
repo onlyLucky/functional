@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-22 10:13:37
  * @LastEditors: pink
- * @LastEditTime: 2022-02-22 10:54:11
+ * @LastEditTime: 2022-02-22 11:06:58
  * @Description: 代码组合
  */
 
@@ -42,6 +42,7 @@ let associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
 let snakeCase = function(word){
   return word.toLowerCase().replace(/\s+/ig, '_')
 }
+// pointfree
 let toLowerCase = function(x) { return x.toLowerCase(); };
 let snakeCasePoinfree = compose(replace(/\s+/ig, '_'),toLowerCase)
 

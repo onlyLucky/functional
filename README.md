@@ -481,6 +481,20 @@ var associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
 
 指的是，永远不必说出你的数据。函数无须提及将要操作的数据是什么样的。一等公民的函数、柯里化（curry）以及组合协作起来非常有助于实现这种模式。
 
+```js
+// 非 pointfree，因为提到了数据：name
+var initials = function (name) {
+  return name.split(' ').map(compose(toUpperCase, head)).join('. ');
+};
+
+// pointfree
+var initials = compose(join('. '), map(compose(toUpperCase, head)), split(' '));
+
+initials("hunter stockton thompson");
+// 'H. S. T'
+```
+> 1. pointfree 模式能够帮助我们减少不必要的命名，让代码保持简洁和通用。
+> 2. 并非所有的函数式代码都是 pointfree 的,可以使用它的时候就使用，不能使用的时候就用普通函数
 
 
 
