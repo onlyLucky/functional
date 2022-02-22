@@ -451,5 +451,27 @@ let shout = compose(exclaim,toUpperCase)
 
 shout("Send in this clowns") //=> "SEND IN THE CLOWNS!"
 ```
-让代码从右向左运行，而不是由内而外运行
+让代码从右向左运行，而不是由内而外运行,下面我们来看一个顺序很重要的例子：
 
+```js
+let head = function(x) { return x[0]; };
+let reverse = reduce(function(acc, x){ return [x].concat(acc); }, []);
+let last = compose(head, reverse);
+
+last(['jumpkick', 'roundhouse', 'uppercut']);//=> 'uppercut'
+```
+reverse 反转列表，head 取列表中的第一个元素；虽然它性能不高。这个组合中函数的执行顺序应该是显而易见的。尽管我们可以定义一个从左向右的版本，但是**从右向左执行更加能够反映数学上的含义**
+
+```js
+// 结合律（associativity）
+var associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
+```
+
+这个特性就是**结合律**，符合结合律意味着不管你是把 g 和 h 分到一组，还是把 f 和 g 分到一组都不重要。
+
+> 1. 前面的例子中我们必须要写两个组合才行，但既然组合是符合结合律的，我们就可以只写一个
+>
+> 2. 而且想传给它多少个函数就传给它多少个，然后让它自己决定如何分组。
+>
+> 3. 运用结合律能为我们带来强大的灵活性，还有对执行结果不会出现意外的那种平和心态。至于稍微复杂些的可变组合,而且你也可以在类似 lodash、underscore 以及 ramda 这样的类库中找到它们的常规定义。
+> 4. 结合律的一大好处是任何一个函数分组都可以被拆开来，然后再以它们自己的组合方式打包在一起
