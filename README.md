@@ -505,7 +505,34 @@ initials("hunter stockton thompson");
 下图是一些相同的概念分别在不同理论下的形式：
 [![bCTyss.png](https://s4.ax1x.com/2022/02/23/bCTyss.png)](https://imgtu.com/i/bCTyss)
 
+在范畴学中，有一个概念叫做...范畴。有着以下这些组件（component）的搜集（collection）就构成了一个范畴：
 
+1. 对象的搜集
+> 对象就是数据类型，常我们把数据类型视作所有可能的值的一个集合（set）,把类型当作集合对待是有好处的，因为我们可以利用集合论（set theory）处理类型。
+2. 态射的搜集
+> 态射是标准的、普通的纯函数。
+3. 态射的组合
+> 本章介绍组合,compose 函数是符合结合律的，这并非巧合，结合律是在范畴学中对任何组合都适用的一个特性。
+
+```js
+var g = function(x){ return x.length; };
+var f = function(x){ return x === 4; };
+var isFourLetterWord = compose(f, g);
+```
+4. identity 这个独特的态射
+
+下面是一个名为 id 的实用函数,这个函数接受随便什么输入然后原封不动地返回它：
+
+```js
+var id = function(x){ return x; };
+```
+这到底哪里有用了？id 函数跟组合一起使用简直完美。下面这个特性对所有的一元函数（unary function）（一元函数：只接受一个参数的函数） f 都成立：
+```js
+// identity
+compose(id, f) == compose(f, id) == f;
+// true
+```
+> 这就是实数的单位元（identity property），慢慢理解它的无用性。很快我们就会到处使用 id 了
 
 
 ---

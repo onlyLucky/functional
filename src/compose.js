@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-22 10:13:37
  * @LastEditors: pink
- * @LastEditTime: 2022-02-22 11:06:58
+ * @LastEditTime: 2022-02-23 19:57:23
  * @Description: 代码组合
  */
 
@@ -47,3 +47,7 @@ let toLowerCase = function(x) { return x.toLowerCase(); };
 let snakeCasePoinfree = compose(replace(/\s+/ig, '_'),toLowerCase)
 
 console.log(snakeCasePoinfree('Hybird ONE'))
+
+var g = function(x){ return x.length; };
+var f = function(x){ return x === 4; };
+var isFourLetterWord = compose(f, g);
