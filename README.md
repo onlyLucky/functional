@@ -497,10 +497,13 @@ initials("hunter stockton thompson");
 > 2. 并非所有的函数式代码都是 pointfree 的,可以使用它的时候就使用，不能使用的时候就用普通函数
 
 
+### 范畴学
+
+> 范畴学（category theory）是数学中的一个抽象分支，能够形式化诸如集合论（set theory）、类型论（type theory）、群论（group theory）以及逻辑学（logic）等数学分支中的一些概念。
 
 
-
-
+下图是一些相同的概念分别在不同理论下的形式：
+[![bCTyss.png](https://s4.ax1x.com/2022/02/23/bCTyss.png)](https://imgtu.com/i/bCTyss)
 
 
 
