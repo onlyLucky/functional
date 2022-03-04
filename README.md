@@ -563,7 +563,18 @@ let makes = cars.map(function(car){ return car.make; });
 
 使用 map 的版本是一个表达式，它对执行顺序没有要求。而且，map 函数如何进行迭代，返回的数组如何收集，都有很大的自由度。它指明的是做什么，不是怎么做。因此，它是正儿八经的声明式代码。
 
+下面再看一个例子
 
+```js
+// 命令式
+var authenticate = function(form) {
+  var user = toUser(form);
+  return logIn(user);
+};
+
+// 声明式
+var authenticate = compose(logIn, toUser);
+```
 
 
 ---
@@ -572,3 +583,4 @@ let makes = cars.map(function(car){ return car.make; });
 
 - Fowler书籍 的《重构》
 - 1970 年的电影 Love Story 
+- JIT 优化
